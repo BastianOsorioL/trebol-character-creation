@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://example/entities/player/sprites/hFront.png" type="Texture" id=1]
+[ext_resource path="res://example/entities/player/scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://addons/2d_state_machine/state_machine_player.gd" type="Script" id=3]
+[ext_resource path="res://example/entities/player/scripts/states/Right.gd" type="Script" id=4]
+[ext_resource path="res://example/entities/player/scripts/states/Left.gd" type="Script" id=5]
+[ext_resource path="res://example/entities/player/scripts/states/Idle.gd" type="Script" id=6]
+[ext_resource path="res://example/entities/player/scripts/states/Up.gd" type="Script" id=7]
+[ext_resource path="res://example/entities/player/scripts/states/Down.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19, 24.2836 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Move"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.707108, 0.707108 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Move = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -24.2426
+margin_top = -51.1213
+margin_right = 23.7574
+margin_bottom = -30.1213
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StateMachinePlayer" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Idle" type="Node" parent="StateMachinePlayer"]
+script = ExtResource( 6 )
+
+[node name="Right" type="Node" parent="StateMachinePlayer"]
+script = ExtResource( 4 )
+
+[node name="Left" type="Node" parent="StateMachinePlayer"]
+script = ExtResource( 5 )
+
+[node name="Up" type="Node" parent="StateMachinePlayer"]
+script = ExtResource( 7 )
+
+[node name="Down" type="Node" parent="StateMachinePlayer"]
+script = ExtResource( 8 )
