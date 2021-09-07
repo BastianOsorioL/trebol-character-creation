@@ -3,6 +3,26 @@ State Machine Plugin for 2d games in godot.  It comes with the implementation of
 
 To use this plugin correctly, the following steps must be followed:
 
+# Create a Character
+
+1.- First, you must create your player scene, which should have a tree like the following example.
+
+![player_tree](https://user-images.githubusercontent.com/69488912/132380240-f252a8af-e2a5-4e77-9209-0bebc20a42d2.PNG)
+
+2.- Then you must put an initial texture to the sprite. And then form the collision of the character with that initial sprite.
+
+![initial_texture_sprite](https://user-images.githubusercontent.com/69488912/132380704-c5592afb-c25d-40bf-afb1-af1a0d55c19a.PNG)
+
+![collision_character](https://user-images.githubusercontent.com/69488912/132380850-6c80cc80-323f-4127-9c15-352f7270d38b.PNG)
+
+3.-  You must also create a single animation called "Move" with the AnimationPlayer node, where the frames will increase as a second passes.
+
+![animation_move](https://user-images.githubusercontent.com/69488912/132381351-df04e8f2-309f-4bfe-afe0-9c236989e7ec.PNG)
+
+_**`In the example, the animation lasts 0.4 seconds, because the texture contains 4 different frames, so for every 0.1 second a frame changes, to then enable the animation loop.`**_
+
+# Create a State Machine
+
 1.- You must create the script of the character node to which you want to implement the state machine, like the next example.
 
 ![player_script](https://user-images.githubusercontent.com/69488912/132252971-3132e9bf-186c-4dde-9a2f-4d70d17c9404.PNG)
