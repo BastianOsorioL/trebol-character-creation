@@ -1,4 +1,4 @@
-# 2d-state-machine
+# Trébol Character Creation
 State Machine Plugin for 2d games in godot.  It comes with the implementation of 4-way movement.
 
 To use this plugin correctly, the following steps must be followed:
